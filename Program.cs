@@ -17,13 +17,13 @@ namespace Brickz
         
         static int tempX = 0, tempY = 0, ScoreFill = 0, ScoreFills=0,Score=0,level=1;
         static bool stop = false;
-        static float distance = 0, downy = 192,timey=0;
+        static uint h = 800, w = 160, lengthy = h / 32 + h / 100 + 2, lengthx = w / 32;
+        static float distance = 0,downy = h/2,timey=0;
         static Vector2f Mpos;
         static Player game = new Player();
         static Color[] clr = new Color[5];
         static int[] randoms = new int[5];
         static RenderWindow app;
-        static uint h=400, w=160,lengthy=h/32+h/100+2,lengthx=w/32;
         static RectangleShape[,] shape = new RectangleShape[lengthx, lengthy];
 
 
@@ -186,7 +186,7 @@ namespace Brickz
                     downy += 0.07f * 1.5f * timey;
 
                     Console.WriteLine(downy);
-                    if (downy-h > -150)
+                    if (downy >= h/2+224)
                     {
                         if (!File.Exists("records.txt"))
                             File.Create("records.txt");
