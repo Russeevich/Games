@@ -17,7 +17,7 @@ namespace Brickz
         
         static int tempX = 0, tempY = 0, ScoreFill = 0, ScoreFills=0,Score=0,level=1;
         static bool stop = false;
-        static uint h = 800, w = 160, lengthy = h / 32 + h / 100 + 2, lengthx = w / 32;
+        static uint h = 400, w = 160, lengthy = h / 32 + 8, lengthx = w / 32;
         static float distance = 0,downy = h/2,timey=0;
         static Vector2f Mpos;
         static Player game = new Player();
@@ -184,8 +184,7 @@ namespace Brickz
                         timey += time / 150;
 
                     downy += 0.07f * 1.5f * timey;
-
-                    Console.WriteLine(downy);
+                
                     if (downy >= h/2+224)
                     {
                         if (!File.Exists("records.txt"))
@@ -232,6 +231,10 @@ namespace Brickz
             game.isMove = true;
             tempX = (int)Mpos.X-16;
             tempY = (int)Mpos.Y;
+            if (tempX > w - 32)
+                tempX = (int)(w - 32);
+            if (tempX < 0)
+                tempX = 0;
         }
 
         private static void OnClose(object sender, EventArgs e)
